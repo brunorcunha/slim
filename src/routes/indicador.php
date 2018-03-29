@@ -31,14 +31,17 @@ $app->get('/indicador/all', function(Request $request, Response $response){
 $app->get('/indicador/{id}', function(Request $request, Response $response){
 	
 	$id = $request->getAttribute('id');	
-	$sql = "SELECT * FROM indicador WHERE id = $id";
+	$sql = "SELECT * FROM indicador WHERE id = :id";
 	
 	try
 	{
 		$db = new db();
 		$db = $db->connect();
 		
-		$stmt = $db->query($sql);
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+		
 		$indicador = $stmt->fetchAll(PDO::FETCH_OBJ);
 		
 		$db = null;
