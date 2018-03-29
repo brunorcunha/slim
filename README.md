@@ -2,14 +2,17 @@
 Rest com SlimFramework
 
 -HTTPD.CONF
+```sh
 LoadModule headers_module modules/mod_headers.so
 <IfModule mod_headers.c>
     Header set Access-Control-Allow-Origin: *
     Header set Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
     Header set Access-Control-Allow-Headers: Content-Type
 </IfModule>
+```
 
 -HTTPD-VHOSTS.CONF
+```sh
 <VirtualHost *:80>
 	ServerName slim
 	DocumentRoot "c:/server/www/slim/public"
@@ -19,3 +22,4 @@ LoadModule headers_module modules/mod_headers.so
 		Require local
 	</Directory>
 </VirtualHost>
+```
